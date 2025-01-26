@@ -1,1 +1,10 @@
 @import "tailwindcss";
+
+:root {
+    --font: "Source Sans 3", serif;
+}
+
+body {
+    font-family: var(--font);
+    background-color: black;
+}
