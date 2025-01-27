@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-    --font: "Source Sans 3", serif;
+    --font: "Poppins", serif;
 }
 
 body {

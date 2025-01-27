@@ -1,19 +1,21 @@
 import React from "react"
 import { Calendar, ListTodo, Settings, CalendarRange, CalendarDays, ChevronLeft, ChevronRight } from "lucide-react"
 import todo from "../assets/todo.png"
+import { NavLink } from "react-router-dom"
 
 interface SidebarItem {
     label: string
     icon: React.ReactNode
+    to: string
     onClick?: () => void 
 }
 
 const SidebarItems: SidebarItem[] = [
-    { label: "Today", icon: <Calendar size={20} /> },
-    { label: "Tasks", icon: <ListTodo size={20} /> },
-    { label: "Week", icon: <CalendarRange size={20} />},
-    { label: "Month", icon: <CalendarDays size={20} />},
-    { label: "Settings", icon: <Settings size={20} /> }
+    { label: "Today", icon: <Calendar size={20} />, to: "today" },
+    { label: "Tasks", icon: <ListTodo size={20}  />, to: "tasks"},
+    { label: "Week", icon: <CalendarRange size={20} />, to: "week"},
+    { label: "Month", icon: <CalendarDays size={20} />, to: "month" },
+    { label: "Settings", icon: <Settings size={20} />, to: "settings" }
 ]
 
 export default function Sidebar() {
@@ -21,7 +23,8 @@ export default function Sidebar() {
     const [open, setOpen] = React.useState<boolean>(true)
 
     const sidebarItems = SidebarItems.map(item => (
-        <div 
+        <NavLink
+            to={item.to}
             key={item.label}
             className={`flex items-center gap-4 p-3 cursor-pointer hover:opacity-75 rounded ${
                 selectedItem === item.label ? 'bg-[#3A3B3D]' : ''} ${!open ? "justify-center" : ""}`}
@@ -29,7 +32,7 @@ export default function Sidebar() {
         >
             <span>{item.icon}</span>
             {open && <span>{item.label}</span>}
-        </div>
+        </NavLink>
     ))
 
     return <div className={`bg-[#232627] fixed left-0 top-0 p-4 text-gray-100 h-full 
