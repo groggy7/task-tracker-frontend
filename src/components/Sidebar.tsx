@@ -1,5 +1,6 @@
 import React from "react"
 import { Calendar, ListTodo, Settings, CalendarRange, CalendarDays, ChevronLeft, ChevronRight } from "lucide-react"
+import todo from "../assets/todo.png"
 
 interface SidebarItem {
     label: string
@@ -22,7 +23,7 @@ export default function Sidebar() {
     const sidebarItems = SidebarItems.map(item => (
         <div 
             key={item.label}
-            className={`flex items-center gap-4 p-2 cursor-pointer hover:opacity-75 rounded ${
+            className={`flex items-center gap-4 p-3 cursor-pointer hover:opacity-75 rounded ${
                 selectedItem === item.label ? 'bg-[#3A3B3D]' : ''} ${!open ? "justify-center" : ""}`}
             onClick={() => setSelectedItem(item.label)}
         >
@@ -32,9 +33,9 @@ export default function Sidebar() {
     ))
 
     return <div className={`bg-[#232627] fixed left-0 top-0 p-4 text-gray-100 h-full 
-        flex flex-col gap-4 ${open ? 'w-64' : 'w-18'} transition-all duration-300`}>
+        flex flex-col gap-4 ${open ? 'w-64' : 'w-20'} transition-all duration-300`}>
         <div className="flex gap-4 p-2 items-center relative">
-            <ListTodo size={20} />
+            <img src={todo} alt="app logo" className="w-7"/>
             {open && <span>sabotage1135</span>}
             <span 
                 className="absolute -right-7 bg-[#3A3B3E] p-1 rounded-full cursor-pointer"
